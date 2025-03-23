@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  // Updated import for Routes
+import axios from 'axios';
+import Header from './Components/Header';
+import RecipeSearch from './Components/RecipeSearch';
+import RecipeDetail from './Components/RecipeDetail';
+import Filters from './Components/Filters';
 
-function App() {
+const App = () => {
+  const [categories, setCategories] = useState([]);
+  const [filteredCategory, setFilteredCategory] = useState('');
+
+  useEffect(() => {
+    axios
+      .get('https://www.themealdb.com/api/json/v1/1/categories.php')
+      .then((response) => setCategories(response.data.categories))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Filters categories={categories} onFilterChange={setFilteredCategory} />
+      <Routes>
+        <Route path="/" element={<RecipeSearch category={filteredCategory} />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
