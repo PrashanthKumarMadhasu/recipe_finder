@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import RecipeCard from "./RecipeCard";
+import "../styles/globalStyles.css";
 
 const RecipeSearch = () => {
   const [query, setQuery] = useState("");

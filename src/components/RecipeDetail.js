@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import  '../styles/globalStyles.css';
 
 const RecipeDetail = () => {
   const { id } = useParams();
@@ -23,10 +24,10 @@ const RecipeDetail = () => {
   if (!recipe) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="recipe-detail">
       <h2>{recipe.strMeal}</h2>
-      <img src={recipe.strMealThumb} alt={recipe.strMeal} />
-      <p>{recipe.strInstructions}</p>
+      <img src={recipe.strMealThumb} alt={recipe.strMeal} id="recipe-img" />
+      <p id="recipe-info">{recipe.strInstructions}</p>
     </div>
   );
 };
