@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import  '../styles/globalStyles.css';
+import "../styles/globalStyles.css";
+import { FaHeart } from "react-icons/fa6";
 
 const RecipeDetail = () => {
   const { id } = useParams();
@@ -25,7 +26,11 @@ const RecipeDetail = () => {
 
   return (
     <div className="recipe-detail">
-      <h2>{recipe.strMeal}</h2>
+      <div className="header-container">
+        <h2>{recipe.strMeal}</h2>
+        <FaHeart id="heart-icon" />
+      </div>
+
       <img src={recipe.strMealThumb} alt={recipe.strMeal} id="recipe-img" />
       <p id="recipe-info">{recipe.strInstructions}</p>
     </div>
