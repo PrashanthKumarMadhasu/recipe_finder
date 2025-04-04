@@ -14,7 +14,7 @@ const RecipeSlider = () => {
       setCurrentSlide((prev) =>
         prev === categories.length - 1 ? 0 : prev + 1
       );
-    }, 3000);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, [categories.length]);

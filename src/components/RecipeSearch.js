@@ -14,7 +14,7 @@ const RecipeSearch = () => {
     if (query.length > 0) {
       fetchSuggestions();
     } else {
-      setSuggestions([]); // Clear suggestions when input is empty
+      setSuggestions([]);
       setShowDropdown(false);
     }
   }, [query]);
@@ -25,7 +25,7 @@ const RecipeSearch = () => {
         `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
       );
       setSuggestions(response.data.meals || []);
-      setShowDropdown(true); // Show dropdown when suggestions are available
+      setShowDropdown(true);
     } catch (error) {
       console.error("Error fetching suggestions:", error);
     }
@@ -37,7 +37,7 @@ const RecipeSearch = () => {
         `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
       );
       setRecipes(response.data.meals || []);
-      setSuggestions([]); // Clear suggestions when a search is performed
+      setSuggestions([]); 
       setShowDropdown(false);
     } catch (error) {
       console.error("Error fetching recipes:", error);
@@ -62,7 +62,7 @@ const RecipeSearch = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setShowDropdown(true)}
-          onBlur={() => setTimeout(() => setShowDropdown(false), 200)} // Delay hiding dropdown to allow click
+          onBlur={() => setTimeout(() => setShowDropdown(false), 200)} 
         />
         <button onClick={handleSearch}>Search</button>
 
